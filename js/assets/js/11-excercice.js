@@ -75,8 +75,9 @@ var j = 0;
 for( i = 0; i < PremierTrismestre.length ; i++ ){
     w( 'Moyenne de ' + PremierTrismestre[i].prenom + ' ' + PremierTrismestre[i].nom )
     w( '<ul>');
-    while ( j < PremierTrismestre[i].moyenneMatiere ){
-        w( '<li>' + PremierTrismestre[i].moyenneMatiere[j] + '</li>');
+    while ( j < Object.keys(PremierTrismestre[i].moyenneMatiere).length){
+        l(Object.keys(PremierTrismestre[i].moyenneMatiere).length);
+        w( '<li>' + PremierTrismestre[i].moyenneMatiere + '</li>');
         j++;
     }
     j=0;
