@@ -1,5 +1,3 @@
-f
-
 function VerifAge() {
 
     var age = parseInt(prompt("Bonjour quel est votre age","<Saisir votre age>"));
