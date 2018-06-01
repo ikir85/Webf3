@@ -77,7 +77,7 @@ for( i = 0; i < PremierTrismestre.length ; i++ ){
     w( '<ul>');
     while ( j < Object.keys(PremierTrismestre[i].moyenneMatiere).length){
         l(Object.keys(PremierTrismestre[i].moyenneMatiere).length);
-        w( '<li>' + PremierTrismestre[i].moyenneMatiere + '</li>');
+        w( '<li>' +  Object.values(PremierTrismestre[i].moyenneMatiere)+ '</li>');
         j++;
     }
     j=0;
