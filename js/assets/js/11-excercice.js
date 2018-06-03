@@ -46,6 +46,7 @@ var PremierTrismestre = [
             francais: 9,
             histoire: 17,
             maths: 15,
+            literrature: 20
         }
     },
     {
@@ -70,16 +71,23 @@ var PremierTrismestre = [
     }
 ];
 
-var j = 0;
+
 
 for( i = 0; i < PremierTrismestre.length ; i++ ){
+    var j = 0;
+    var totalNote= 0;
+    var moyenneGeneral= 0;
+    var moyenneDec = 0
+
     w( 'Moyenne de ' + PremierTrismestre[i].prenom + ' ' + PremierTrismestre[i].nom )
-    w( '<ul>');
+    w( '<ul style="list-style: none;">');
     while ( j < Object.keys(PremierTrismestre[i].moyenneMatiere).length){
-        l(Object.keys(PremierTrismestre[i].moyenneMatiere).length);
-        w( '<li>' +  Object.values(PremierTrismestre[i].moyenneMatiere)+ '</li>');
+        w( '<li style="text-transform: capitalize;">' + Object.keys(PremierTrismestre[i].moyenneMatiere)[j] + ' : '+ Object.values(PremierTrismestre[i].moyenneMatiere)[j]+ '</li>');
+        totalNote = totalNote + parseFloat(Object.values(PremierTrismestre[i].moyenneMatiere)[j]);
+        moyenneGeneral = totalNote / Object.keys(PremierTrismestre[i].moyenneMatiere).length;
+        moyenneDec = moyenneGeneral.toFixed(2);
         j++;
     }
-    j=0;
-    w( '</ul>');
+        w( '<br><li style="text-transform: capitalize;">' + '<b>Moyenne General</b> : ' + moyenneDec + '</li>');
+    w( '</ul><hr>');
 }
