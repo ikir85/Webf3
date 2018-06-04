@@ -24,7 +24,7 @@ var PremierTrismestre = [
     {
         prenom: "Hugo",
         nom: "LIEGEARD",
-        moyenneMatiere: {
+        matieres: {
             francais: 12,
             anglais: 14,
             maths: 18,
@@ -33,7 +33,7 @@ var PremierTrismestre = [
     {
         prenom: "Riki",
         nom: "NDINGA",
-        moyenneMatiere: {
+        matieres: {
             francais: 11,
             espagnol: 16,
             physique: 9,
@@ -42,7 +42,7 @@ var PremierTrismestre = [
     {
         prenom: "Jules",
         nom: "Verne",
-        moyenneMatiere: {
+        matieres: {
             francais: 9,
             histoire: 17,
             maths: 15,
@@ -52,7 +52,7 @@ var PremierTrismestre = [
     {
         prenom: "Pascal",
         nom: "Robitaille",
-        moyenneMatiere: {
+        matieres: {
             anglais: 17,
             sVT: 8,
             maths: 11,
@@ -61,7 +61,7 @@ var PremierTrismestre = [
     {
         prenom: "Julien",
         nom: "Dupont",
-        moyenneMatiere: {
+        matieres: {
             latin: 10,
             techno: 10,
             maths: 9,
@@ -74,20 +74,34 @@ var PremierTrismestre = [
 
 
 for( i = 0; i < PremierTrismestre.length ; i++ ){
-    var j = 0;
-    var totalNote= 0;
-    var moyenneGeneral= 0;
-    var moyenneDec = 0
+    let Etudiant = PremierTrismestre[i];
+    let j = 0;
+    let totalNote= 0 , moyenneGeneral= 0, moyenneDec = 0 ;
 
-    w( PremierTrismestre[i].prenom + ' ' + '<span style="text-transform: Uppercase;">' +PremierTrismestre[i].nom+ '</span>' )
+    w( Etudiant.prenom + ' ' + '<span style="text-transform: Uppercase;">' +Etudiant.nom+ '</span>' )
     w( '<ul style="list-style: none;">');
-    while ( j < Object.keys(PremierTrismestre[i].moyenneMatiere).length){
-        w( '<li style="text-transform: capitalize;">' + Object.keys(PremierTrismestre[i].moyenneMatiere)[j] + ' : '+ Object.values(PremierTrismestre[i].moyenneMatiere)[j]+ '</li>');
-        totalNote = totalNote + parseFloat(Object.values(PremierTrismestre[i].moyenneMatiere)[j]);
-        moyenneGeneral = totalNote / Object.keys(PremierTrismestre[i].moyenneMatiere).length;
+
+    while ( j < Object.keys(Etudiant.matieres).length){
+        w( '<li style="text-transform: capitalize;">' + Object.keys(Etudiant.matieres)[j] + ' : '+ Object.values(Etudiant.matieres)[j]+ '</li>');
+        totalNote += Object.values(Etudiant.matieres)[j];
+        moyenneGeneral = totalNote / Object.keys(Etudiant.matieres).length;
         moyenneDec = moyenneGeneral.toFixed(2);
         j++;
     }
         w( '<br><li style="text-transform: capitalize;">' + '<b>Moyenne General</b> : ' + moyenneDec + '</li>');
+        
     w( '</ul><hr>');
 }
+
+
+
+/* for (let matiere in Etudiant.matieres){ 
+
+    let( matiere);
+
+    w('<li>');
+        w(matiere + ' : ' + Etudiant.matieres[matiere]);
+    w('<li>');
+
+
+}*/
