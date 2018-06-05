@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Exercice 4 - FINAL</title>
     <style>
-        .pseudoError, .ageError {
+        .pseudoError, .ageError, .EmailError {
             width: 200px;
             height: 20px;
             background-color: yellow;
@@ -13,6 +13,9 @@
         }
         .ageError {
             width: 360px;
+        }
+        .EmailError {
+            width: 220px;
         }
     </style>
     <!-- 
@@ -68,12 +71,13 @@ En cliquant sur le bouton "M'inscrire", vous devrez enclencher une action permet
     <h1>Formulaire d'inscription</h1>
     <h3 id="Bienvenue"></h3>
     <!-- Emmet : form>(input[type=text][id=$])*5 -->
-    <form method="get" action="inscription.php" id="InscriptionForm">
+    <form method="get" action="inscription.php" id="InscriptionForm" onsubmit="return handle_form_submission()">
         <input type="text"  value="TheWarriorMaster"  id="pseudo"  placeholder="Choisissez un Pseudo"><br />
         <div class="pseudoError">Ce pseudo est déjà pris.</div><br />
         <input type="text" value="22" id="age" placeholder="Quel est votre Age ?"><br />
         <div class="ageError">Vous devez avoir au moins 18 ans pour vous inscrire.</div><br />
-        <input value="thewarriormaster@gmail.com" type="email" id="email" placeholder="Quel est votre Email ?"><br /><br />
+        <input value="thewarriormaster@gmail.com" type="email" id="email" placeholder="Quel est votre Email ?"><br />
+        <div class="EmailError">Veuillez entrer un email valide.</div><br />
         <input value="thisismypassword" type="password" id="mdp" placeholder="****"><br /><br />
         <input type="submit" id="submit" value="M'inscrire" >
     </form>
