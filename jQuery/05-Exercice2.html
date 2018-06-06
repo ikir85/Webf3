@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Formulaire de Contact</title>
+    <style>
+        * {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+        }
+        form fieldset {
+            border:1px solid #CCC;
+            border-radius:10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+            width: 500px;
+            margin: 40px auto;
+        }
+        form input, form textarea {
+            width: 100%;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <form id="MonFormulaire" action="contact.php" method="GET">
+        <fieldset>
+            <input type="text" id="fullname" placeholder="Nom et Prénom">
+            <input type="email" id="email" placeholder="Email">
+            <input type="tel" id="tel" placeholder="Téléphone">
+            <input type="text" id="sujet" placeholder="Sujet">
+            <textarea id="message" cols="30" rows="10" placeholder="Message..."></textarea>
+            <input type="submit" value="Envoyer ma Demande">
+        </fieldset>
+    </form>
+
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+
+    <script>
+        /* -------------------------------------------------
+        |             ~~~   LA CONSIGNE     ~~~            |
+        |                                                  |
+        | A partir du Formulaire de Contact ci-dessus :    |
+        |                                                  |
+        |   1. Afficher à l'utilisateur un Récapitulatif   |
+        |   de sa demande de contact.                      |
+        |                                                  |
+        ------------------------------------------------- */
+
+        $('#MonFormulaire').on('submit', function(e) {
+            
+        var testEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        var testPhone = /^[-+]?[0-9]+$/;
+        var emailValide =false ;
+        var phoneValide = false;
+
+        var emailInput = $('#email').val();
+        var phoneInput = $('#tel').val();
+         
+        e.preventDefault();
+         
+        if (testEmail.test(emailInput)){
+           emailValide = true;
+        }
+        if (testPhone.test(phoneInput)){
+            var phoneValide = true;
+        } 
+
+// -- Verification de chaue input
+
+         if($('#fullname').val() == ""){
+             $(this).append ('<p>Veuillez entrer un message </p>'  );
+         }
+         else if(!emailValide ){
+             $(this).append (' <p>Erreur email </p>'  );
+             $( "#x" ).prop( "disabled", true );
+         }
+         else if(!phoneValide){ 
+             $(this).append (' <p>Erreur numero de telephone </p>'  );}
+         else if($('#sujet').val() == ""){ 
+             $(this).append (' <p>Veuilles entrer un sujet </p>'  );}
+         else if($('#message').val() == ""){ 
+             $(this).append (' <p>Veuilles entrer un message </p>'  );}
+         else{ 
+            $(this).append (' <p>Recapitulatif du formulaire <br/><br/> <b>Nom</b>: ' + $('#fullname').val() +'<br/><b>Prenom</b>: '+ $('#email').val() + '<br/> <b>Telephone</b>: '+ $('#tel').val() + '<br/><b>Sujet</b>: '+ $('#sujet').val() + '<br/> <b>Message</b>: '+ $('#message').val() +'!</p>'  );
+            $("input[type=submit]").attr('disabled','disabled');
+        }
+});
+
+    </script>
+</body>
+</html>
